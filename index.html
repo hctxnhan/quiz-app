@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  <div class="notification">
+    <div class="notification-text">You haven't chosen any answer yet!</div>
+  </div>
+  <div class="container">
+    <div class="result">
+      <p class='result-title'>Your score is</p>
+      <p class='result-text'>12/12</p>
+    </div>
+    <div class="quiz-header">
+      <div class="">
+        <p class='question-no'>Question 1</p>
+        <p class="question">How would you like to choose your answer</p>
+      </div>
+      <ul class="answers">
+        <li class="answer"><input type="radio" class='answer-input' name="answer" id="a">
+          <label id='answerLabelA' for="a" class="answer-content">Answer A</label>
+        </li>
+        <li class="answer"><input type="radio" class='answer-input' name="answer" id="b"><label id='answerLabelB'
+            for="b" class="answer-content answer--wrong">Answer
+            B</label>
+        </li>
+        <li class="answer"><input type="radio" class='answer-input' name="answer" id="c"><label id='answerLabelC'
+            for="c" class="answer-content answer--correct">Answer
+            C</label>
+        </li>
+        <li class="answer"><input type="radio" class='answer-input' name="answer" id="d"><label id='answerLabelD'
+            for="d" class="answer-content">Answer
+            D</label>
+        </li>
+      </ul>
+    </div>
+
+    <button class='submit-button'>Submit</button>
+  </div>
+</body>
+
+</html>
