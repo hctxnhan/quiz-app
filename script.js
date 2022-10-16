@@ -198,6 +198,8 @@ function setNotification(message) {
 }
 
 function showResult() {
+  const resultText = document.querySelector('.result-text');
+  resultText.textContent = correctAnswer + '/' + questions.length;
   resultElem.classList.add('result--show');
 }
 
@@ -212,7 +214,7 @@ function handleClickSubmitButton() {
   }
   if (!nextQuestion) {
     if (checkAnswer()) {
-      if (currentQuestion == 2) {
+      if (currentQuestion == questions.length - 1) {
         finished = true;
         nextQuestion = false;
         changeButtonText('Go to result');
@@ -233,8 +235,5 @@ function handleClickSubmitButton() {
 
 submitButton.addEventListener('click', handleClickSubmitButton);
 
+resetAnswerElem();
 loadQuestion(questions[0]);
-
-// TODO:
-// - warning user if they didn't choose any answer before clicked submit button
-// - show result when out of question
