@@ -152,7 +152,7 @@ function checkAnswer() {
   if (answer == null) {
     console.log('Chua chon dap an nao', answer);
     setNotification("You haven't chosen any answer yet!");
-    return;
+    return false;
   }
 
   toggleSelectAnswer(true);
@@ -169,12 +169,7 @@ function checkAnswer() {
     setNotification('Oh no!');
   }
 
-  submitAnswer();
-}
-
-function submitAnswer() {
-  submitButton.textContent = 'Next Question';
-  nextQuestion = true;
+  return true;
 }
 
 function hideNotification() {
@@ -202,20 +197,6 @@ function setNotification(message) {
   }, 1500);
 }
 
-function goToNextQuestion() {
-  resetAnswerElem();
-  toggleSelectAnswer(false);
-  submitButton.textContent = 'Submit';
-  nextQuestion = false;
-  currentQuestion++;
-}
-
-function goToResult() {
-  finished = true;
-  submitButton.textContent = 'See result';
-  nextQuestion = false;
-}
-
 function showResult() {
   resultElem.classList.add('result--show');
 }
@@ -229,24 +210,29 @@ function handleClickSubmitButton() {
     showResult();
     return;
   }
-
-  if (currentQuestion == 2) {
-    goToResult();
-    checkAnswer();
-    return;
-  }
-
-  if (nextQuestion) {
-    goToNextQuestion();
-    loadQuestion(questions[currentQuestion]);
+  if (!nextQuestion) {
+    if (checkAnswer()) {
+      if (currentQuestion == 2) {
+        finished = true;
+        nextQuestion = false;
+        changeButtonText('Go to result');
+      } else {
+        currentQuestion++;
+        nextQuestion = true;
+        changeButtonText('Next question');
+      }
+    }
   } else {
-    checkAnswer();
+    nextQuestion = false;
+    changeButtonText('Submit');
+    resetAnswerElem();
+    toggleSelectAnswer(false);
+    loadQuestion(questions[currentQuestion]);
   }
 }
 
 submitButton.addEventListener('click', handleClickSubmitButton);
 
-goToNextQuestion();
 loadQuestion(questions[0]);
 
 // TODO:
