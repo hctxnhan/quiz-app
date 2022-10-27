@@ -113,7 +113,7 @@ let correctAnswer = 0;
 let finished = false;
 
 function loadQuestion({ title, a, b, c, d }) {
-  questionNoElem.textContent = 'Question ' + currentQuestion;
+  questionNoElem.textContent = 'Question ' + (currentQuestion + 1);
   questionElem.textContent = title;
   answerAElem.textContent = a;
   answerBElem.textContent = b;
